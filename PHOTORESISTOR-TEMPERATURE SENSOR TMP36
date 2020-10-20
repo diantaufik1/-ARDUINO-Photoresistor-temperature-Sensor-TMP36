@@ -1,0 +1,25 @@
+int sensorSuhu = A1;
+int sensorLdr = A0;
+int Multimeter1 = 12;
+int Multimeter2 = 6;
+int sensorread; 
+int sensorout; 
+int nilai;
+int output;
+
+void setup(){
+  pinMode(sensorLdr, INPUT);
+  pinMode(sensorSuhu, INPUT);
+  pinMode(Multimeter1, OUTPUT);
+  pinMode(Multimeter2, OUTPUT);
+  Serial.begin(9600);
+}
+
+void loop(){
+  sensorread= analogRead (sensorLdr);
+  nilai= analogRead(sensorSuhu);
+  sensorout = map (sensorread , 0, 1023, 0 ,255);
+  output= map(nilai, 0, 1023, 0, 255);
+  analogWrite(Multimeter1, sensorout); 
+  analogWrite(Multimeter2, output);
+}
